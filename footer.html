@@ -1,0 +1,32 @@
+</br></br>
+<div align="center">
+
+<?php
+$user = $_SESSION['login_user'];
+$sql_user = "select usr_id from user where usr_id = '$user' and csv_export = 'S'";
+$result_user = mysqli_query($db, $sql_user);
+$count_user = mysqli_num_rows($result_user);
+
+if ($count_user == 1) {
+echo '<a href="csv_export.php">CSV export</a> | ';
+echo '<a href="csv_import.php" target="_blank">CSV import</a> |';
+} 
+?>
+
+<a href="logout.php">Logout</a> | <a href="settings.php">Impostazioni</a> | vai alla pagina 
+
+<?php
+$sql    = "select * from pages p where exists(select 1 from user u where u.usr_id='$user' and find_in_set(p.page_id, cast(u.pages_id as char)) > 0)";
+$result = mysqli_query($db, $sql);
+?>
+
+<select name="list" id="list" accesskey="target" style="background-color: #FFFFFF; color: black;">
+<?php
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+	echo '<option value="' . $row['page_ref'] . '">' . $row['page_name'] . '</option>';
+}
+?>
+<select>
+<input type=button value="Vai" onclick="goToNewPage()" /></div>
+</body>
+</html>
