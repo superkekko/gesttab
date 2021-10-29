@@ -1,5 +1,5 @@
 </br></br>
-<div align="center">
+<div align="cente">
 
 <?php
 $user = $_SESSION['login_user'];
@@ -10,10 +10,10 @@ $count_user = mysqli_num_rows($result_user);
 if ($count_user == 1) {
 echo '<a href="csv_export.php">CSV export</a> | ';
 echo '<a href="csv_import.php" target="_blank">CSV import</a> |';
-} 
+}
 ?>
 
-<a href="logout.php">Logout</a> | <a href="settings.php">Impostazioni</a> | vai alla pagina 
+<a href="logout.php">Logout</a> | <a href="settings.php">Impostazioni</a> | vai alla pagina
 
 <?php
 $sql    = "select * from pages p where exists(select 1 from user u where u.usr_id='$user' and find_in_set(p.page_id, cast(u.pages_id as char)) > 0)";
