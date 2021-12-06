@@ -1,5 +1,5 @@
 <?php
-
+ 
 /*
  * phpMyEdit default language file loader
  *
